@@ -12,6 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.widget.Toast.makeText;
 
 public class rendimento1 extends AppCompatActivity {
     EditText inicial;
@@ -21,6 +24,8 @@ public class rendimento1 extends AppCompatActivity {
     TextView rendimento;
     double resultado;
     TextView rendeu;
+
+
 
 
     @Override
@@ -34,7 +39,10 @@ public class rendimento1 extends AppCompatActivity {
         final EditText litros = (EditText) findViewById(R.id.litros);
         final EditText porcentagem = (EditText) findViewById(R.id.porcentagem);
         final TextView rendeu = (TextView) findViewById(R.id.rendeu);
+        final Button clear = (Button) findViewById(R.id.clear);
         Button button = (Button) findViewById(R.id.button);
+        final TextView km = (TextView) findViewById(R.id.km);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,9 +54,20 @@ public class rendimento1 extends AppCompatActivity {
                     resultado = (op2 - op1)/(op3 * (op4/100));
                     String inuNilaiString = Double.toString(resultado);
                     rendeu.setText(inuNilaiString);
+                    km.setText("Km/L");
+                }else Toast.makeText(rendimento1.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                clear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inicial.setText("");
+                        final1.setText("");
+                        litros.setText("");
+                        porcentagem.setText("");
+                        rendeu.setText("");
+                        km.setText("");
 
-
-                }
+                    }
+                    });
             }
         });
 
